@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:56:16 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/07 18:01:41 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/07 21:42:11 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ void		init_buff(t_struct *s)
 	int i;
 
 	f->ret = 0;
+	f->bi = 0;
 	i = 0;
 	while (i != BSIZE)
 	{
@@ -37,13 +38,13 @@ void		str_buff(t_format *f, char *str)
 			f->b[f->bi] = str[i];
 			i++;
 			f->bi++;
-			f->ret++;
 		}
+		f->b[f->bi] = '\n'
+		f->bi++;
 	}
 	else
 	{
 		write(1, f->b, BSIZE);
 		init_buff(f);
-		f->bi = 0;
 	}
 }
