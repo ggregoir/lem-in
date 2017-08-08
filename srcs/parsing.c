@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/08 18:44:57 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/08 19:21:40 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void		handle_room(t_struct s, char *line)
 				x++;
 			}
 			if (x > 50)
-				return ;
+				return(error(0));
 			j = x;
 			x++;
+			if
 		}
-
 
 	}
 }
