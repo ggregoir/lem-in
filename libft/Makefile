@@ -6,7 +6,7 @@
 #    By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/24 13:52:14 by ggregoir          #+#    #+#              #
-#    Updated: 2017/08/01 00:49:00 by ggregoir         ###   ########.fr        #
+#    Updated: 2017/08/08 16:02:04 by ggregoir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC +=	ft_strtrim.c
 SRC +=	ft_strsplit.c
 
 SRC +=	ft_strcjoin.c
+SRC +=	ft_strcut.c
 SRC +=	ft_printjoin.c
 SRC	+=	ft_count_words.c
 SRC	+=	ft_error.c

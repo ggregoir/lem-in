@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/07 17:38:44 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/08 18:48:01 by ggregoir         ###   ########.fr       */
+/*   Created: 2017/04/05 15:02:19 by ggregoir          #+#    #+#             */
+/*   Updated: 2017/08/08 16:01:10 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "../includes/libft.h"
 
-void		error(int i)
+char		*ft_strcut(char *str, int start, int end)
 {
-	if (i == 0)
-		ft_putendl_fd("input error", 1);
-	if (i == 1)
-		ft_putendl_fd("command error", 1);
-	if (i == 3)
-		ft_putendl_fd("malloc error", 1);
+	int		i;
+	char	*ret;
 
+	i = 0;
+	if ((ret = (char *)malloc(sizeof(*str) * ((end - start) + 1))) == NULL)
+		return (NULL);
+	while (start < end)
+	{
+		ret[i] = str[start];
+		start++;
+		i++;
+	}
+	ret[i] = '\0';
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/07 22:06:10 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/08 18:44:57 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,23 @@ void		handle_link(t_struct s, char *line)
 void		handle_room(t_struct s, char *line)
 {
 	int x;
+	int j;
 
 	x = 0;
-	if (line[0] != ' ' || line[0] != 'L'|| line[0] != '#')
-	{
-		while(line[x] != ' ' || x > 50)
+	if (line[0] != ' ' || line[0] != 'L'|| line[0] != '#' || line[x] != '-' )
+	{	
+		while(line[x])
 		{
+			while(line[x] != ' ' || x > 50)
+			{
+				x++;
+			}
+			if (x > 50)
+				return ;
+			j = x;
 			x++;
 		}
+
 
 	}
 }

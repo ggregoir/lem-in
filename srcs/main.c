@@ -6,13 +6,22 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/07 18:30:46 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/08 18:56:44 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int main(int argc, char **argv)
+void		init_struct(t_struct *s)
+{
+	if ((s->rooms = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+		return(error(3));
+	if ((s->names = ft_memalloc(sizeof(*char) * BSIZE)) == NULL)
+		return(error(3));
+
+}
+
+int			main(int argc, char **argv)
 {
 	char *line;
 	while (get_next_line(0, &line) > 0)
