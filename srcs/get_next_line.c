@@ -6,11 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 14:49:04 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/05 18:56:21 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/10 19:15:40 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "../lem_in.h"
 
 int				check_line(char **str, char **line, int rt)
 {
@@ -58,7 +58,7 @@ int				get_next_line(const int fd, char **line)
 		else if (rt == 0 && !*str)
 			return (0);
 		buffer[rt] = '\0';
-		str = ft_strjoin_free(str, buffer, 1);
+		str = ft_strjoinf(str, buffer, 1);
 	}
 	return (-1);
 }

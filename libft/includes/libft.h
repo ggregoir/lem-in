@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 15:00:19 by jafaghpo          #+#    #+#             */
-/*   Updated: 2017/08/01 00:21:13 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/10 19:11:32 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void			ft_print_memory(const void *addr, size_t size);
 */
 
 char			*ft_strcat(char *dest, const char *src);
+char			*ft_strcut(char *str, int start, int end);
 char			*ft_strchr(const char *s, int c);
 void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);
