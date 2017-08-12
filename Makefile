@@ -6,13 +6,13 @@
 #    By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/29 19:13:14 by ggregoir          #+#    #+#              #
-#    Updated: 2017/08/10 18:55:45 by ggregoir         ###   ########.fr        #
+#    Updated: 2017/08/11 00:19:26 by ggregoir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= lem-in
 
-SRC		= srcs/main.c srcs/parsing.c srcs/get_next_line.c srcs/error.c srcs/buffer.c
+SRC		= srcs/main.c srcs/parsing.c srcs/get_next_line.c srcs/error.c srcs/buffer.c srcs/utils.c
 		
 OBJ		= $(patsubst srcs/%.c,obj/%.o,$(SRC))
 .SILENT:
