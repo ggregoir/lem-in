@@ -6,18 +6,23 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:56:16 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/12 00:56:48 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/13 14:48:06 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 #include <stdio.h>
 
+void		print_buff(t_struct *s)
+{
+	write(1, s->b, s->bi);
+}
+
 void		init_buff(t_struct *s)
 {
-	printf("laul\n");
+	//printf("laul\n");
 	ft_bzero(s->b, BUSIZE);
-	printf("lel\n");
+//	printf("lel\n");
 }
 
 void		str_buff(t_struct *s, char *str)

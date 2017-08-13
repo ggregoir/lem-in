@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 00:18:25 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/12 01:28:35 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/13 17:30:36 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int			link_first(t_struct *s, char *line)
 	while (line[i] != '-')
 		i++;
 	j = 0;
-	ft_putendl("before while");
+	//ft_putendl("before while");
 	while (s->names[j])
 	{
-		printf("||%s||%s||\n",ft_strcut(line, 0, i), s->names[j]);
+		//printf("||%s||%s||\n",ft_strcut(line, 0, i), s->names[j]);
 		if (ft_strequ(s->names[j] ,ft_strcut(line, 0, i )))
 			return(j);
 		j++;
 	}
-	ft_putendl("after while");
+	//ft_putendl("after while");
 	return(-1);
 }
 
@@ -70,15 +70,15 @@ int			link_second(t_struct *s, char *line)
 	while (line[i] != '-')
 		i++;
 	j = 0;
-	ft_putendl("before while");
+	//ft_putendl("before while");
 	while (s->names[j])
 	{
-		printf("%s||%s||\n",ft_strcut(line, i + 1, ft_strlen(line)), s->names[j]);
+		//printf("%s||%s||\n",ft_strcut(line, i + 1, ft_strlen(line)), s->names[j]);
 		if (ft_strequ(s->names[j] ,ft_strcut(line, i + 1, ft_strlen(line))))
 			return(j);
 		j++;
 	}
-	ft_putendl("after while");
+	//ft_putendl("after while");
 	return(-1);
 }
 

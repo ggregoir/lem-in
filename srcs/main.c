@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/12 02:00:07 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/13 17:50:03 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void		init_struct(t_struct *s)
 	s->start = 0;
 	s->end = 0;
 	s->nbfourmi = 0;
+	s->print = 1;
 
 }
 
-int			main()
+int			main(int argc, char **argv)
 {
 	char		*line;
 	t_struct	s;
@@ -42,18 +43,23 @@ int			main()
 	i = 0;
 	j = 0;
 
+	argc = 0;
 	init_struct(&s);
 	init_buff(&s);
+	if (ft_strequ(argv[1], "-mute"))
+		s.print = 0;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line == 0)
 			error(0);
 		else
 		{
-			ft_putendl("line existe");
+			//ft_putendl("line existe");
 			parse_line(&s, line);
 		}
 	}
+	if (s.print == 1)
+		print_buff(&s);
 	while (s.names[i])
 	{
 		printf("nb = %d nom = %s\n", i, s.names[i]);
@@ -70,5 +76,6 @@ int			main()
 		j = 0;
 		i++;
 	}
+	//printf("nbfourmi = %d\n", s.nbfourmi );
 	return 0;
 }

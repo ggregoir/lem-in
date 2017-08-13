@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/12 00:56:32 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/13 17:33:12 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/includes/libft.h"
 
-#define BSIZE 1000
+#define BSIZE 2000
 #define BUSIZE 1 << 15
 
 typedef struct	s_struct
@@ -29,6 +29,7 @@ typedef struct	s_struct
 	int			start;
 	int			end;
 	int			nbfourmi;
+	int			print;
 }				t_struct;
 
 typedef struct	s_line
@@ -47,5 +48,7 @@ size_t			ft_strlenchr(const char *s, char c);
 int				link_first(t_struct *s, char *line);
 int				link_second(t_struct *s, char *line);
 void			init_buff(t_struct *s);
+void			print_buff(t_struct *s);
+void			check_room(t_struct *s, char *line);
 
 #endif
