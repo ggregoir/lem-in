@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/13 17:33:12 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/17 00:01:01 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_struct
 	int			end;
 	int			nbfourmi;
 	int			print;
+	int			safe;
+	int			esafe;
 }				t_struct;
 
 typedef struct	s_line
@@ -40,7 +42,7 @@ typedef struct	s_line
 }				t_line;
 
 int				get_next_line(const int fd, char **line);
-void			error(int i);
+void			error(int i, t_struct *s);
 void			parse_line(t_struct *s, char *line);
 void			str_buff(t_struct *s, char *str);
 char			*ft_strjoin_and_free(char *s1, char *s2, char c, int at);
@@ -50,5 +52,6 @@ int				link_second(t_struct *s, char *line);
 void			init_buff(t_struct *s);
 void			print_buff(t_struct *s);
 void			check_room(t_struct *s, char *line);
+void			willudothis(t_struct *s);
 
 #endif
