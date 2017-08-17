@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 00:59:38 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/17 22:47:08 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void		handle_link(t_struct *s, char *line)
 	{
 //		ft_putendl("link first");
 		if ((i = link_first(s, line)) == -1)
-			error(4, s);
+			return (error(8, s));
 //		ft_putendl("link second");
 		if ((j = link_second(s, line)) == -1)
-			error(4, s);
+			return (error(8, s));
 //		printf("assign\n");
 //		printf("room[i][x] = %d\n",s->rooms[i][x] );
 		while (x < BSIZE)
@@ -104,7 +104,7 @@ void		handle_room(t_struct *s, char *line)
 		while (ft_isdigit(line[x]))
 			x++;
 		if (line[x++] != ' ')
-			return(error(1, s));
+			return(error(0, s));
 		while (ft_isdigit(line[x]))
 			x++;
 		if (x != (int)ft_strlen(line))
@@ -113,7 +113,7 @@ void		handle_room(t_struct *s, char *line)
 		add_name(s, ft_strcut(line, 0, j));
 	}
 	if (s->start || s->end)
-		error(1, s);
+		error(3, s);
 }
 void		parse_line(t_struct *s, char *line)
 {
@@ -135,9 +135,11 @@ void		parse_line(t_struct *s, char *line)
 			return ;
 		}
 	}
-	if (line[0] == '#' && line [1] == '#')
+	if (line[0] == '\n')
+		error(7, s);
+	else if (line[0] == '#' && line [1] == '#')
 	{
-//		ft_putendl("commande detect");
+		//ft_putendl(line);
 		handle_command(s, line);
 		return ;
 	}

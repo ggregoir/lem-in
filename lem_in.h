@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 00:01:01 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/17 19:07:17 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "libft/includes/libft.h"
 
-#define BSIZE 2000
-#define BUSIZE 1 << 15
+# define BSIZE	2000
+# define BUSIZE	1 << 15
 
 typedef struct	s_struct
 {	
@@ -31,7 +31,6 @@ typedef struct	s_struct
 	int			nbfourmi;
 	int			print;
 	int			safe;
-	int			esafe;
 }				t_struct;
 
 typedef struct	s_line
@@ -52,6 +51,6 @@ int				link_second(t_struct *s, char *line);
 void			init_buff(t_struct *s);
 void			print_buff(t_struct *s);
 void			check_room(t_struct *s, char *line);
-void			willudothis(t_struct *s);
+void			willudothis(t_struct *s, char *str);
 
 #endif

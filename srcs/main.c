@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 00:26:52 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/17 22:46:41 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void		init_struct(t_struct *s)
 	s->nbfourmi = 0;
 	s->print = 1;
 	s->safe = 0;
-	s->esafe = 0;
 
 }
+
+
 
 int			main(int argc, char **argv)
 {
@@ -63,8 +64,6 @@ int			main(int argc, char **argv)
 			parse_line(&s, line);
 		}
 	}
-	if (s.esafe == 1)
-		willudothis(&s);
 	if (s.print == 1)
 		print_buff(&s);
 	while (s.names[i])
@@ -83,6 +82,6 @@ int			main(int argc, char **argv)
 		j = 0;
 		i++;
 	}
-	//printf("nbfourmi = %d\n", s.nbfourmi );
+	//printf("ok");
 	return 0;
 }
