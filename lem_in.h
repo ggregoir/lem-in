@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 19:07:17 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/24 18:04:57 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct	s_struct
 	int			safe;
 }				t_struct;
 
+typedef	struct	s_path
+{
+	int			start;
+	int			nbpath;
+	int			**paths;
+}				t_path;
+
 typedef struct	s_line
 {
 	char			*tab;
@@ -52,5 +59,6 @@ void			init_buff(t_struct *s);
 void			print_buff(t_struct *s);
 void			check_room(t_struct *s, char *line);
 void			willudothis(t_struct *s, char *str);
+void			nb_path(t_struct *s, t_path *p);
 
 #endif

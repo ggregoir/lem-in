@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 22:46:41 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/24 14:59:52 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			main(int argc, char **argv)
 {
 	char		*line;
 	t_struct	s;
+	t_path 		p;
 	int i;
 	int j;
 	int 	fd;
@@ -58,9 +59,11 @@ int			main(int argc, char **argv)
 	{
 		if (line == 0)
 			error(0, &s);
+		else if (ft_strequ(line, "\n"))
+			error(7, &s);
 		else
 		{
-			//ft_putendl("line existe");
+			//printf("safemode = %d\n", s.safe);
 			parse_line(&s, line);
 		}
 	}
@@ -82,6 +85,8 @@ int			main(int argc, char **argv)
 		j = 0;
 		i++;
 	}
+	nb_path(&s, &p);
+	printf("nb path = %d\n", p.nbpath);
 	//printf("ok");
 	return 0;
 }

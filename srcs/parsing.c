@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 22:47:08 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/22 16:36:36 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void		handle_command(t_struct *s, char *line)
 	else if (ft_strequ(line ,"##safe"))
 		s->safe = 1;
 	else
-		error(1, s);
+		if (s->safe ==1)
+			error(1, s);
+
 }
 
 void		handle_link(t_struct *s, char *line)
@@ -53,16 +55,19 @@ void		handle_link(t_struct *s, char *line)
 	int x;
 
 	x = 0;
-//	ft_putendl("handle_link");
+	//ft_putendl("handle_link");
 	if (ft_strchr(line,'-'))
 	{
-//		ft_putendl("link first");
+	//	ft_putendl("link first");
 		if ((i = link_first(s, line)) == -1)
+		{
+			//ft_putendl("ayyyyy lmao");
 			return (error(8, s));
-//		ft_putendl("link second");
+		}
+		//ft_putendl("link second");
 		if ((j = link_second(s, line)) == -1)
 			return (error(8, s));
-//		printf("assign\n");
+	//	printf("assign\n");
 //		printf("room[i][x] = %d\n",s->rooms[i][x] );
 		while (x < BSIZE)
 		{
@@ -95,7 +100,7 @@ void		handle_room(t_struct *s, char *line)
 	j = 0;
 	if (*line != ' ' && *line != 'L' && *line != '#' && !ft_strchr(line,'-'))
 	{	
-//		printf("lol\n");
+		//printf("lol\n");
 		while(line[x] && line[x] != ' ' && x < 50)
 			x++;
 		if (x > 50)
@@ -114,39 +119,44 @@ void		handle_room(t_struct *s, char *line)
 	}
 	if (s->start || s->end)
 		error(3, s);
+	//ft_putendl("lolilolololilolilol");
 }
 void		parse_line(t_struct *s, char *line)
 {
 	str_buff(s, line);
-//	ft_putendl(line);
+	//ft_putendl(line);
 	if (s->nbfourmi == 0)
 	{
-//		ft_putendl("get fourmi number");
+		//ft_putendl("get fourmi number");
 		if (ft_isdigit(line[0]) == 0)
 		{
-//			ft_putendl("probleme nb fourmi");
+			//ft_putendl("probleme nb fourmi");
 			error(5, s);
 		}
 		else
 		{
-//			ft_putendl("atoi nb fourmi");
+			//ft_putendl("atoi nb fourmi");
 			if ((s->nbfourmi = atoi(line)) <= 0)
 				error(5, s);
 			return ;
 		}
 	}
-	if (line[0] == '\n')
+	if (line[0] == '\0')
+	{
 		error(7, s);
+		return ;
+	}
 	else if (line[0] == '#' && line [1] == '#')
 	{
-		//ft_putendl(line);
+	//	ft_putendl(line);
 		handle_command(s, line);
 		return ;
 	}
-//	ft_putendl("avant handle room");
+	//ft_putendl("avant handle room");
 	if (!ft_strchr(line,'#'))
 	{
 		handle_room(s, line);
 		handle_link(s, line);
 	}
+	//ft_putendl("ptdr");
 }

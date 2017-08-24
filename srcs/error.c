@@ -6,11 +6,12 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:38:44 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 23:09:25 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/22 16:35:12 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+#include <stdio.h>
 
 void		willudothis(t_struct *s, char *str)
 {
@@ -32,7 +33,6 @@ void		willudothis(t_struct *s, char *str)
 		if(i == 0)
 			ft_putendl_fd("\"yes\" or \"no\"", 1);
 	}
-	s->safe = 0;
 }
 
 void		check_room(t_struct *s, char *line)
@@ -47,6 +47,7 @@ void		check_room(t_struct *s, char *line)
 
 void		error2(int i, t_struct *s)
 {
+	//printf("i e2 = %d\n", i);
 	if (i == 5)
 	{
 		ft_putendl_fd("ants error", 1);
@@ -58,7 +59,12 @@ void		error2(int i, t_struct *s)
 		exit(1);
 	}
 	if (i == 7)
-		willudothis(s, "empty line");
+	{
+		if (s->safe == 1)
+			willudothis(s, "empty line");
+		else
+			error(0, s);
+	}
 	if (i == 8)
 	{
 		if (s->safe == 1)
@@ -70,6 +76,7 @@ void		error2(int i, t_struct *s)
 
 void		error(int i, t_struct *s)
 {
+	//printf("i = %d\n", i);
 	if (i == 0)
 	{
 		ft_putendl_fd("input error", 1);
