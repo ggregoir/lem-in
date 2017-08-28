@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/24 18:32:04 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:29:12 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,41 @@ void	init_path(t_path *p, int ***paths)
 	if ((p->paths = ft_memalloc(sizeof(int*) * p->nbpath)) == NULL)
 		return(error(3, s));
 	while (x + 1 <= p->nbpath)
+	{
 		if ((p->paths[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 			return(error(3, s));
+		ft_memset(p->paths[x++], -1, BSIZE);
+	}
+	if ((p->tmp = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+		return(error(3, s));
+	if ((p->pathsize = ft_memalloc(sizeof(int) * p->nbpath)) == NULL)
+		return(error(3, s));
+	p->i = 0;
+	p->pi = 0;
 }
 
-void	get_path(t_struct *s, t_path *p, int i, int j)
+void	get_path(t_struct *s, t_path *p, int curr, int last)
 {
-	while (t->rooms[i][j] != 1)
+	int 	j;
+
+	j = 0;
+	if (curr == 1)
+		return (manage_path(p));
+	while (s->rooms[curr][j] != -1 && s->rooms[curr][j] != last)
 	{
-		
+		if (curr == 0 || already_path(p->tmp, curr))
+			return ;
+		p->tmp[p->i++] = s->rooms[curr][j];
+		get_path(s, p, s->rooms[curr][j], int curr);
+		j++;
 	}
+	p->tmp[p->i] = -1;
+	p->pi--;
+	return ;
 }
 
 void	resolve(t_struct *s, t_path *p)
 {
-
-	init_path(p)
-
+	nb_path(s, p);
+	init_path(p);
 }

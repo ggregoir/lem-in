@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/24 14:59:52 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/26 18:08:37 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void		init_struct(t_struct *s)
 	if ((s->rooms = ft_memalloc(sizeof(int*) * BSIZE)) == NULL)
 		return(error(3, s));
 	while (x != BSIZE)
-		if ((s->rooms[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+	{
+		if ((s->rooms[x] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 			return(error(3, s));
+		ft_memset(s->rooms[x++], -1, BSIZE);
+	}
+
 	if ((s->names = ft_memalloc(sizeof(char*) * BSIZE)) == NULL)
 		return(error(3, s));
 	s->ni = 2;
