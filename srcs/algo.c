@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/28 20:29:12 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:42:55 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ void	nb_path(t_struct *s, t_path *p)
 		p->nbpath = i;
 }
 
-void	init_path(t_path *p, int ***paths)
+void	init_path(t_path *p, t_struct *s)
 {
+	int x;
+
+	x = 0;
 	if ((p->paths = ft_memalloc(sizeof(int*) * p->nbpath)) == NULL)
 		return(error(3, s));
 	while (x + 1 <= p->nbpath)
@@ -63,10 +66,10 @@ void	get_path(t_struct *s, t_path *p, int curr, int last)
 		return (manage_path(p));
 	while (s->rooms[curr][j] != -1 && s->rooms[curr][j] != last)
 	{
-		if (curr == 0 || already_path(p->tmp, curr))
+		if (curr == 0 || already_path(p, curr))
 			return ;
 		p->tmp[p->i++] = s->rooms[curr][j];
-		get_path(s, p, s->rooms[curr][j], int curr);
+		get_path(s, p, s->rooms[curr][j], curr);
 		j++;
 	}
 	p->tmp[p->i] = -1;
@@ -77,5 +80,5 @@ void	get_path(t_struct *s, t_path *p, int curr, int last)
 void	resolve(t_struct *s, t_path *p)
 {
 	nb_path(s, p);
-	init_path(p);
+	init_path(p, s);
 }

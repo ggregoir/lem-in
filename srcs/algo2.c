@@ -6,18 +6,20 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 15:41:15 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/28 19:36:19 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:46:55 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				already_path(int *path, int curr)
+#include "../lem_in.h"
+
+int				already_path(t_path *p, int curr)
 {
 	int x;
 
 	x = 0;
-	while(path[x] != -1)
+	while(p->tmp[x] != -1)
 	{
-		if (path[x++] == curr)
+		if (p->tmp[x++] == curr)
 			return(1);
 	}
 	return (0);
@@ -28,7 +30,7 @@ int				pathsize(int j, t_path *p)
 	int i;
 
 	i = 0;
-	while (p->paths[j] != -1)
+	while (p->paths[j][i] != -1)
 		i++;
 	return (i);
 }
@@ -43,7 +45,7 @@ void			replace_path(int i, t_path *p)
 
 void			manage_path(t_path *p)
 {
-	int x
+	int x;
 	int j;
 	int worst;
 
@@ -58,6 +60,6 @@ void			manage_path(t_path *p)
 	while (++x != p->pi)
 		if (p->pathsize[x] > worst)
 			worst = x;
-	replace_path(worst, p)
+	replace_path(worst, p);
 
 }

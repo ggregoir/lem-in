@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/26 18:08:37 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/28 21:13:19 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int			main(int argc, char **argv)
 	i = 0;
 	while (s.rooms[i])
 	{
+		printf("sroom de i =%d\n",s.rooms[i][j] );
 		while(s.rooms[i][j])
 		{
 			printf("%s link avec %s\n", s.names[i], s.names[s.rooms[i][j]]);
