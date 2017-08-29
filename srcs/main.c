@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/28 21:13:19 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/08/29 23:21:06 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void		init_struct(t_struct *s)
 		return(error(3, s));
 	while (x != BSIZE)
 	{
-		if ((s->rooms[x] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+		if ((s->rooms[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 			return(error(3, s));
-		ft_memset(s->rooms[x++], -1, BSIZE);
+		//ft_memset(s->rooms[x++], -1, BSIZE);
 	}
 
 	if ((s->names = ft_memalloc(sizeof(char*) * BSIZE)) == NULL)
@@ -53,8 +53,10 @@ int			main(int argc, char **argv)
 	j = 0;
 	fd = open(argv[argc - 1], O_RDONLY);
 	argc = 0;
+	ft_putendl("lol");
 	init_struct(&s);
 	init_buff(&s);
+	ft_putendl("lal");
 	if (ft_strequ(argv[1], "-mute"))
 		s.print = 0;
 	if (ft_strequ(argv[1], "-safe"))
@@ -81,7 +83,6 @@ int			main(int argc, char **argv)
 	i = 0;
 	while (s.rooms[i])
 	{
-		printf("sroom de i =%d\n",s.rooms[i][j] );
 		while(s.rooms[i][j])
 		{
 			printf("%s link avec %s\n", s.names[i], s.names[s.rooms[i][j]]);
@@ -90,7 +91,7 @@ int			main(int argc, char **argv)
 		j = 0;
 		i++;
 	}
-	nb_path(&s, &p);
+	resolve(&s, &p);
 	printf("nb path = %d\n", p.nbpath);
 	//printf("ok");
 	return 0;
