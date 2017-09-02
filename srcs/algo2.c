@@ -16,7 +16,6 @@
 int				already_path(t_path *p, int curr)
 {
 	ft_putendl("already_path");
-	printf("curr = %d\n", curr);
 	int x;
 	int y;
 

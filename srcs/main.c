@@ -93,21 +93,17 @@ int			main(int argc, char **argv)
 	}
 	resolve(&s, &p);
 	printf("nb path = %d\n", p.nbpath);
-	i = 1;
+	i = 0;
 	j = 0;
-	while (j != 5)
+	while (i != p.nbpath)
 	{
-		printf("path = %d\n",p.paths[0][j++]);
-	}
-	j = 0;
-	while (j != 5)
-	{
-		printf("path = %d\n",p.paths[1][j++]);
-	}
-	j = 0;
-	while (j != 5)
-	{
-		printf("path = %d\n",p.paths[2][j++]);
+		while (p.paths[i][j] != 0)
+		{
+			printf("path nb%d = %d\n",i + 1, p.paths[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
 	}
 	return 0;
 }
