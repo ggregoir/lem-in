@@ -42,6 +42,7 @@ typedef	struct	s_path
 	int			*pathsize;
 	int			i;
 	int			pi;
+	int			x;
 }				t_path;
 
 typedef struct	s_line

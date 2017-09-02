@@ -11,17 +11,42 @@
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+#include <stdio.h>
 
 int				already_path(t_path *p, int curr)
 {
+	ft_putendl("already_path");
+	printf("curr = %d\n", curr);
 	int x;
+	int y;
 
 	x = 0;
-	while(p->tmp[x] != -1)
+	y = 0;
+	if(curr != 1)
 	{
-		if (p->tmp[x++] == curr)
-			return(1);
+		while (y != p->nbpath)
+		{
+			while(p->paths[y][x])
+			{
+				if(p->paths[y][x] == curr)
+					return(1);
+				x++;
+			}
+			x = 0;
+			y++;
+		}
 	}
+	while(p->tmp[x] != 0)
+	{
+		if (p->tmp[x++] == 1)
+			return(0);
+		if (p->tmp[x++] == curr)
+		{
+			ft_putendl("ap ret 1");
+			return(1);
+		}
+	}
+	ft_putendl("ap ret 0");
 	return (0);
 }
 
@@ -30,16 +55,30 @@ int				pathsize(int j, t_path *p)
 	int i;
 
 	i = 0;
-	while (p->paths[j][i] != -1)
+	while (p->paths[j][i])
 		i++;
 	return (i);
 }
 void			replace_path(int i, t_path *p)
 {
-	if (p->pathsize[i] > p->i)
+	printf("coucou\n");
+	int x;
+
+	x = 0;
+	while (p->tmp[x])
+		x++;
+	if (p->pathsize[i] > x)
 	{
-		p->paths[i] = p->tmp;
+		x = 0;
+		printf("hello\n");
+		while (p->tmp[x])
+		{
+			printf("lolilol = %d\n", p->paths[i][x]);
+			p->paths[i][x] = p->tmp[x];
+			x++;
+		}
 		p->pathsize[i] = pathsize(i, p);
+		printf("NANI ?!\n");
 	}
 }
 
@@ -49,17 +88,33 @@ void			manage_path(t_path *p)
 	int j;
 	int worst;
 
-	x = -1;
 	j = 0;
-	while (p->pi != p->nbpath)
+	x = -1;
+	while (p->x != p->nbpath)
 	{
-		p->paths[p->pi] = p->tmp;
-		p->pathsize[p->pi] = pathsize(p->pi++, p);
+		printf("LOLOLOLOLOL\n");
+		printf("tmp[0] = %d\n",p->tmp[0]);
+		printf("tmp[1] = %d\n",p->tmp[1]);
+		printf("tmp[2] = %d\n",p->tmp[2]);
+		while (p->tmp[j])
+		{
+			p->paths[p->x][j] = p->tmp[j];
+			j++;
+		}
+		printf("p->paths[0] = %d\n",p->paths[p->x][0]);
+		printf("p->paths[1] = %d\n",p->paths[p->x][1]);
+		printf("p->paths[2] = %d\n",p->paths[p->x][2]);
+		p->pathsize[p->x] = pathsize(p->x, p);
+		p->x++;
+		j = 0;
 		return ;
 	}
-	while (++x != p->pi)
+	printf("apres while\n");
+	while (++x != p->x)
 		if (p->pathsize[x] > worst)
 			worst = x;
+	printf("apres worst\n");
 	replace_path(worst, p);
+	printf("apres replacepath\n");
 
 }

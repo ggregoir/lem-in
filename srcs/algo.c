@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+#include <stdio.h>
 
 void			nb_path(t_struct *s, t_path *p)
 {
@@ -49,7 +50,7 @@ void			init_path(t_path *p, t_struct *s)
 		if ((p->paths[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 			return(error(3, s));
 		ft_putendl("avant memset");
-		ft_memset(p->paths[x++], -1, BSIZE);
+		//ft_memset(p->paths[x++], -1, BSIZE);
 		ft_putendl("apres memset");
 	}
 	ft_putendl("apres while");
@@ -60,26 +61,46 @@ void			init_path(t_path *p, t_struct *s)
 	ft_putendl("apres mallocs");
 	p->i = 0;
 	p->pi = 0;
+	p->x = 0;
 }
 
 void			get_path(t_struct *s, t_path *p, int curr, int last)
 {
+	int x = 0;
 	int 	j;
-ft_putendl("get_path");
+	printf("curr = %d\n", curr);
 	j = 0;
 	if (curr == 1)
-		return (manage_path(p));
+	{
+		ft_putendl("chemin trouvé");
+		j = 0;
+		manage_path(p);
+		printf("tmp[0] = %d\n",p->tmp[p->i]);
+		p->tmp[p->i] = 0;
+		p->i--;
+		printf("tmp[0] = %d\n",p->tmp[0]);
+		printf("tmp[1] = %d\n",p->tmp[1]);
+		printf("tmp[2] = %d\n",p->tmp[2]);
+		return ;
+	}
+	printf("room = %d\n", s->rooms[curr][j]);
 	while (s->rooms[curr][j] != 0 && s->rooms[curr][j] != last)
 	{
 		ft_putendl("dans le while");
-		if (curr == 0 || already_path(p, curr))
+		if (already_path(p, s->rooms[curr][j]))
+		{
+			while(p->tmp[x])
+				printf("tmp = %d\n",p->tmp[x++]);
+			x = 0;
 			return ;
+		}
+		ft_putendl("apres le return");
 		p->tmp[p->i++] = s->rooms[curr][j];
 		get_path(s, p, s->rooms[curr][j], curr);
 		j++;
 	}
-	p->tmp[p->i] = -1;
-	p->pi--;
+	p->tmp[p->i] = 0;
+	p->i--;
 	return ;
 }
 
@@ -91,4 +112,5 @@ void			resolve(t_struct *s, t_path *p)
 	init_path(p, s);
 	ft_putendl("apres init_path");
 	get_path(s, p, 0 ,0);
+	ft_putendl("apres get_path");
 }
