@@ -21,6 +21,15 @@ int				already_path(t_path *p, int curr)
 	int y;
 
 	x = 0;
+	if (curr == 0)
+	{
+		while (x != BSIZE)
+		{
+			p->tmp[x++] = 0;
+		}
+		printf("APRES BZERO\n");
+	}
+	x = 0;
 	y = 0;
 	if(curr != 1)
 	{
@@ -29,7 +38,10 @@ int				already_path(t_path *p, int curr)
 			while(p->paths[y][x])
 			{
 				if(p->paths[y][x] == curr)
+				{
+					ft_putendl("ap ret 1 result");
 					return(1);
+				}
 				x++;
 			}
 			x = 0;
@@ -38,13 +50,15 @@ int				already_path(t_path *p, int curr)
 	}
 	while(p->tmp[x] != 0)
 	{
-		if (p->tmp[x++] == 1)
+		printf("%d\n",p->tmp[x] );
+		if (p->tmp[x] == 1)
 			return(0);
-		if (p->tmp[x++] == curr)
+		if (p->tmp[x] == curr)
 		{
-			ft_putendl("ap ret 1");
+			ft_putendl("ap ret 1 tmp");
 			return(1);
 		}
+		x++;
 	}
 	ft_putendl("ap ret 0");
 	return (0);

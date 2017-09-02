@@ -66,38 +66,36 @@ void			init_path(t_path *p, t_struct *s)
 
 void			get_path(t_struct *s, t_path *p, int curr, int last)
 {
-	int x = 0;
-	int 	j;
-	printf("curr = %d\n", curr);
+	int j;
+
 	j = 0;
-	if (curr == 1)
-	{
-		ft_putendl("chemin trouvé");
-		j = 0;
-		manage_path(p);
-		printf("tmp[0] = %d\n",p->tmp[p->i]);
-		p->tmp[p->i] = 0;
-		p->i--;
-		printf("tmp[0] = %d\n",p->tmp[0]);
-		printf("tmp[1] = %d\n",p->tmp[1]);
-		printf("tmp[2] = %d\n",p->tmp[2]);
-		return ;
-	}
-	printf("room = %d\n", s->rooms[curr][j]);
-	while (s->rooms[curr][j] != 0 && s->rooms[curr][j] != last)
-	{
-		ft_putendl("dans le while");
-		if (already_path(p, s->rooms[curr][j]))
+
+	if (already_path(p, curr))
 		{
-			while(p->tmp[x])
-				printf("tmp = %d\n",p->tmp[x++]);
-			x = 0;
+			p->tmp[p->i] = 0;
+			p->i--;
 			return ;
 		}
-		ft_putendl("apres le return");
-		p->tmp[p->i++] = s->rooms[curr][j];
+
+	printf("new get_path avec curr = %d\n", curr);
+	while (s->rooms[curr][j] != 0)
+	{
+		if (s->rooms[curr][j] == last)
+			j++;
+		printf("curr = %d j = %d et link[j] = %d\n",curr, j, s->rooms[curr][j]);
+		if (curr > 0)
+			p->tmp[p->i++] = curr;
+		if (s->rooms[curr][j] == 1)
+		{
+			printf("DING DING DING\n");
+			manage_path(p);
+			p->tmp[p->i] = 0;
+			p->i--;
+			return ;
+		}
 		get_path(s, p, s->rooms[curr][j], curr);
-		j++;
+		printf("apres get path dans la boucle\n");
+		j++;	
 	}
 	p->tmp[p->i] = 0;
 	p->i--;
