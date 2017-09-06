@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/28 21:03:18 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/06 17:22:29 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		add_name(t_struct *s, char *str)
 		return ;
 	}
 	s->names[s->ni++] = str;
+	s->nbrooms++;
 
 }
 void		handle_command(t_struct *s, char *line)
@@ -53,8 +54,10 @@ void		handle_link(t_struct *s, char *line)
 	int i;
 	int j;
 	int x;
+	int y;
 
 	x = 0;
+	y = - 1;
 	ft_putendl("handle_link");
 	if (ft_strchr(line,'-'))
 	{
@@ -76,6 +79,10 @@ void		handle_link(t_struct *s, char *line)
 		}
 		if (x > BSIZE)
 			error(4, s);
+		while (s->rooms[i][++y] != 0)
+			if (s->rooms[i][y] == j)
+				j = 0;
+			y = -1;
 		s->rooms[i][x] = j;
 		printf("room[i][x] = %d\n",s->rooms[i][x] );
 		x = 0;
@@ -87,6 +94,9 @@ void		handle_link(t_struct *s, char *line)
 		}
 		if (x > BSIZE)
 			error(4, s);
+		while (s->rooms[j][++y] != 0)
+			if (s->rooms[j][y] == j)
+				i = 0;
 		s->rooms[j][x] = i;
 	}
 }

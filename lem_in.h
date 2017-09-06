@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/29 23:24:07 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/06 16:52:06 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/includes/libft.h"
 
-# define BSIZE	2000
+# define BSIZE	4096
 # define BUSIZE	1 << 15
 
 typedef struct	s_struct
@@ -24,7 +24,8 @@ typedef struct	s_struct
 	int			ni;
 	int			ri;
 	int			**rooms;
-	char		b[1 << 15];
+	int			nbrooms;
+	char		b[BUSIZE];
 	int			bi;
 	int			start;
 	int			end;
@@ -39,6 +40,8 @@ typedef	struct	s_path
 	int			nbpath;
 	int			**paths;
 	int			*tmp;
+	int			*already_path;
+	int			*weights;
 	int			*pathsize;
 	int			i;
 	int			pi;
@@ -68,5 +71,6 @@ void			nb_path(t_struct *s, t_path *p);
 int				already_path(t_path *p, int curr);
 void			manage_path(t_path *p);
 void			resolve(t_struct *s, t_path *p);
+void			delete_single(t_struct *s);
 
 #endif

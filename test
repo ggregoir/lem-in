@@ -1,9 +1,34 @@
-3
-2 5 0
+10
 ##start
-start 1 2
+start 0 1
 ##end
-mdr 9 2
-3 5 4
-lolilol-lalul
-aimdeaire 123243 34
+end 1 0
+0 0 0
+1 1 1
+2 2 2
+3 3 3
+4 4 4
+5 5 5
+6 6 6
+7 7 7
+8 8 8
+alone 0 0
+alone2 0 0
+alone3 3 3
+alone4 4 4
+alone5 5 5
+start-0
+0-1
+1-2
+2-3
+3-4
+4-5
+5-6
+6-7
+7-8
+8-end
+5-alone
+8-alone2
+alone2-alone3
+alone2-alone4
+alone4-alone5
