@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/06 18:02:39 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/07 14:43:08 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		init_struct(t_struct *s)
 	s->nbfourmi = 0;
 	s->print = 1;
 	s->safe = 0;
-	s->nbrooms = 0;
+	s->nbrooms = 2;
 
 }
 
@@ -45,7 +45,7 @@ int			main(int argc, char **argv)
 {
 	char		*line;
 	t_struct	s;
-	//t_path 		p;
+	t_path 		p;
 	int i;
 	int j;
 	int 	fd;
@@ -77,8 +77,7 @@ int			main(int argc, char **argv)
 	}
 	if (s.print == 1)
 		print_buff(&s);
-	//resolve(&s, &p);
-	ft_putendl("avant");
+	resolve(&s, &p);
 	while (s.names[i])
 	{
 		printf("nb = %d nom = %s\n", i, s.names[i]);
@@ -97,35 +96,15 @@ int			main(int argc, char **argv)
 	}
 	i = 0;
 	j = 0;
-	delete_single(&s);
-	ft_putendl("apres");
-	while (s.names[i])
+	while (i != p.nbpath)
 	{
-		printf("nb = %d nom = %s\n", i, s.names[i]);
-		i++;
-	}
-	i = 0;
-	while (i != BSIZE)
-	{
-		while(s.rooms[i][j])
-		{
-			printf("%s link avec %s\n", s.names[i], s.names[s.rooms[i][j]]);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	i = 0;
-	j = 0;
-	/*while (i != p.nbpath)
-	{
-		while (p.paths[i][j] != 0)
+		while (p.paths[i][j])
 		{
 			printf("path nb%d = %d\n",i + 1, p.paths[i][j]);
 			j++;
 		}
 		j = 0;
 		i++;
-	}*/
+	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/06 16:52:06 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/08 16:01:41 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef	struct	s_path
 	int			*already_path;
 	int			*weights;
 	int			*pathsize;
+	int			over;
 	int			i;
 	int			pi;
 	int			x;
@@ -69,8 +70,10 @@ void			check_room(t_struct *s, char *line);
 void			willudothis(t_struct *s, char *str);
 void			nb_path(t_struct *s, t_path *p);
 int				already_path(t_path *p, int curr);
-void			manage_path(t_path *p);
 void			resolve(t_struct *s, t_path *p);
 void			delete_single(t_struct *s);
+void			get_weights(t_path *p, t_struct *s, int curr, int dist);
+void			manage_path(int i, t_path *p, t_struct *s);
+void			add_path_reset_weights(t_path *p, t_struct *s, int path);
 
 #endif

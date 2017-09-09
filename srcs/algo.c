@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/06 16:48:35 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/08 16:05:46 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,95 +46,82 @@ void			init_path(t_path *p, t_struct *s)
 		return(error(3, s));
 	while (x + 1 <= p->nbpath)
 	{
-		if ((p->paths[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+		if ((p->paths[x++] = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
 			return(error(3, s));
 	}
-	if ((p->tmp = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+	if ((p->tmp = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
 		return(error(3, s));
-	if ((p->already_path = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
+	if ((p->already_path = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
 		return(error(3, s));
 	if ((p->pathsize = ft_memalloc(sizeof(int) * p->nbpath)) == NULL)
 		return(error(3, s));
 	p->i = 0;
 	p->pi = 0;
 	p->x = 0;
+	p->over = 0;
 }
 
-void			get_path(t_struct *s, t_path *p, int curr, int last)
+void			get_path(t_struct *s, t_path *p, int path)
 {
-	//write(1,"lol\n", 4);
+	int best;
+	int i;
+	int curr;
 	int j;
-	j = 0;
 
-
-	if (s->rooms[curr][j] < 1)
+	curr = 1;
+	j = -1;
+	//printf("curr = %d curr weight = %d\n",curr,p->weights[curr]);
+	while (p->weights[curr] != 2)
 	{
-		write(1,"ntm fdp\n", 8);
-		return ;
-	}
-
-	write(1,"curr\n", 5);
-	ft_putnbr(curr);
-	write(1,"\nlol", 4);
-	ft_putnbr(s->rooms[curr][j]);
-	write(1,"lol\n", 4);
-	write(1,"lol", 4);
-	while(p->tmp[j] > 0)
-	{
-		ft_putnbr(p->tmp[j++]);
-		write(1, " ", 1);
-	}
-	j = 0;
-	write(1,"lol\n", 4);
-	if (already_path(p, curr))
+		//printf("curr = %d curr weight = %d\n",curr,p->weights[curr]);
+		i = -1;
+		best = 1;
+		//printf("s->rooms[curr][++i] = %d\n", s->rooms[curr][i + 1]);
+		//printf("s->rooms[curr][++i] weight = %d\n",p->weights[s->rooms[curr][i + 1]] );
+		while (s->rooms[curr][++i] != 0)
 		{
-		//	write(1,"lal\n", 4);
-			ft_putnbr(p->i);
-			p->tmp[p->i] = 0;
-			p->i--;
-			//write(1,"lql\n", 4);
-			//printf("return already path\n");
-			return ;
+			//printf("s->rooms[curr][i] = %d\n", s->rooms[curr][i]);
+			//printf("i = %d\n", i);
+			//printf("p->weights[best] = %d p->weights[i] = %d\n", p->weights[best], p->weights[i]);
+			if (p->weights[s->rooms[curr][i]] < p->weights[best])
+			{
+				best = s->rooms[curr][i];
+			}
 		}
-	//write(1,"lel\n", 4);
-	//write(1,"lbl\n", 4);
-	while (s->rooms[curr][j] != 0)
-	{
-		//write(1,"lil\n", 4);
-		if (s->rooms[curr][j] == last)
-			j++;
-		//write(1,"lwl\n", 4);
-		if (curr > 0)
-			p->tmp[p->i++] = curr;
-		//write(1,"lgl\n", 4);
-		if (s->rooms[curr][j] == 1)
-		{
-			manage_path(p);
-			p->tmp[p->i] = 0;
-			p->i--;
-			return ;
-		}
-		/*if(last != 0 && s->rooms[curr][0] > 0 && s->rooms[curr][1] == 0)
-		{
-			printf("LOLILOL\n");
-			p->tmp[p->i] = 0;
-			p->i--;
-			return ;
-		}*/
-		//write(1,"lzl\n", 4);
-		get_path(s, p, s->rooms[curr][j], curr);
-		//write(1,"lpl\n", 4);
-		j++;	
+		//printf("SALUT\n");
+		p->tmp[++j] = best;
+		curr = best;
+		//printf("COUCOUCOUCOUCOUCOCUO\n");
 	}
-	p->tmp[p->i] = 0;
-	p->i--;
-	return ;
+	manage_path(path, p, s);
 }
 
 void			resolve(t_struct *s, t_path *p)
 {
-	//delete_single(s);
+	int i;
+	int j;
+
+	i = -1;
+	j = 0;
+	if ((p->weights = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
+		return(error(3, s));
+	delete_single(s);
 	nb_path(s, p);
 	init_path(p, s);
-	get_path(s, p, 0 ,0);
+	while (++i != p->nbpath)
+	{
+		get_weights(p, s, 0, 1);
+		printf("heyhey\n");
+		if (p->over == 1)
+		{	
+			p->over = 0;
+			get_path(s, p, i);
+		}
+		//while (j != s->nbrooms)
+		//{
+		//	printf("weight[%d] = %d\n", j, p->weights[j]);
+		//	j++;
+		//}
+		//printf("nbrooms = %d\n",s->nbrooms );
+	}
 }
