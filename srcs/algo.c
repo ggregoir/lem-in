@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/08 16:05:46 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/12 18:44:35 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,15 @@ void			get_path(t_struct *s, t_path *p, int path)
 
 	curr = 1;
 	j = -1;
-	//printf("curr = %d curr weight = %d\n",curr,p->weights[curr]);
 	while (p->weights[curr] != 2)
 	{
-		//printf("curr = %d curr weight = %d\n",curr,p->weights[curr]);
 		i = -1;
 		best = 1;
-		//printf("s->rooms[curr][++i] = %d\n", s->rooms[curr][i + 1]);
-		//printf("s->rooms[curr][++i] weight = %d\n",p->weights[s->rooms[curr][i + 1]] );
 		while (s->rooms[curr][++i] != 0)
-		{
-			//printf("s->rooms[curr][i] = %d\n", s->rooms[curr][i]);
-			//printf("i = %d\n", i);
-			//printf("p->weights[best] = %d p->weights[i] = %d\n", p->weights[best], p->weights[i]);
-			if (p->weights[s->rooms[curr][i]] < p->weights[best])
-			{
+			if (p->weights[s->rooms[curr][i]] < p->weights[best] && p->weights[s->rooms[curr][i]] != 0)
 				best = s->rooms[curr][i];
-			}
-		}
-		//printf("SALUT\n");
 		p->tmp[++j] = best;
 		curr = best;
-		//printf("COUCOUCOUCOUCOUCOCUO\n");
 	}
 	manage_path(path, p, s);
 }
@@ -111,17 +98,13 @@ void			resolve(t_struct *s, t_path *p)
 	while (++i != p->nbpath)
 	{
 		get_weights(p, s, 0, 1);
-		printf("heyhey\n");
+		if (i == 1)
+			while (j != s->nbrooms)
+				j++;
 		if (p->over == 1)
 		{	
 			p->over = 0;
 			get_path(s, p, i);
 		}
-		//while (j != s->nbrooms)
-		//{
-		//	printf("weight[%d] = %d\n", j, p->weights[j]);
-		//	j++;
-		//}
-		//printf("nbrooms = %d\n",s->nbrooms );
 	}
 }

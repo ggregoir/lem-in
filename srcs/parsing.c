@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/06 17:22:29 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/12 19:48:08 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,42 +56,28 @@ void		handle_link(t_struct *s, char *line)
 	int x;
 	int y;
 
-	x = 0;
-	y = - 1;
-	ft_putendl("handle_link");
+	x = -1;
+	y = -1;
 	if (ft_strchr(line,'-'))
 	{
-		ft_putendl("link first");
 		if ((i = link_first(s, line)) == -1)
-		{
-			ft_putendl("ayyyyy lmao");
 			return (error(8, s));
-		}
-		ft_putendl("link second");
 		if ((j = link_second(s, line)) == -1)
 			return (error(8, s));
-		printf("assign\n");
-		while (x < BSIZE)
-		{
+		while (++x < BSIZE)
 			if (s->rooms[i][x] == 0)
 				break;
-			x++;
-		}
 		if (x > BSIZE)
 			error(4, s);
 		while (s->rooms[i][++y] != 0)
 			if (s->rooms[i][y] == j)
 				j = 0;
-			y = -1;
+		y = -1;
 		s->rooms[i][x] = j;
-		printf("room[i][x] = %d\n",s->rooms[i][x] );
-		x = 0;
-		while (x < BSIZE)
-		{
+		x = -1;
+		while (++x < BSIZE)
 			if (s->rooms[j][x] == 0)
 				break;
-			x++;
-		}
 		if (x > BSIZE)
 			error(4, s);
 		while (s->rooms[j][++y] != 0)
@@ -110,7 +96,6 @@ void		handle_room(t_struct *s, char *line)
 	j = 0;
 	if (*line != ' ' && *line != 'L' && *line != '#' && !ft_strchr(line,'-'))
 	{	
-		//printf("lol\n");
 		while(line[x] && line[x] != ' ' && x < 50)
 			x++;
 		if (x > 50)
@@ -129,23 +114,21 @@ void		handle_room(t_struct *s, char *line)
 	}
 	if (s->start || s->end)
 		error(3, s);
-	//ft_putendl("lolilolololilolilol");
 }
 void		parse_line(t_struct *s, char *line)
 {
 	str_buff(s, line);
-	ft_putendl(line);
 	if (s->nbfourmi == 0)
 	{
-		ft_putendl("get fourmi number");
+		//ft_putendl("get fourmi number");
 		if (ft_isdigit(line[0]) == 0)
 		{
-			ft_putendl("probleme nb fourmi");
+			//ft_putendl("probleme nb fourmi");
 			error(5, s);
 		}
 		else
 		{
-			ft_putendl("atoi nb fourmi");
+			//ft_putendl("atoi nb fourmi");
 			if ((s->nbfourmi = atoi(line)) <= 0)
 				error(5, s);
 			return ;
@@ -158,15 +141,14 @@ void		parse_line(t_struct *s, char *line)
 	}
 	else if (line[0] == '#' && line [1] == '#')
 	{
-		ft_putendl(line);
 		handle_command(s, line);
 		return ;
 	}
-	ft_putendl("avant handle room");
+	//ft_putendl("avant handle room");
 	if (!ft_strchr(line,'#'))
 	{
 		handle_room(s, line);
 		handle_link(s, line);
 	}
-	ft_putendl("ptdr");
+	//ft_putendl("ptdr");
 }

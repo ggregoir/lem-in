@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:38:44 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/22 16:35:12 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/11 18:16:49 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		check_room(t_struct *s, char *line)
 {
 	int i;
 
-	i =0;
+	i = 0;
 	while (s->names[i])
 		if (ft_strequ(line, s->names[i++]))
 			error(3, s);

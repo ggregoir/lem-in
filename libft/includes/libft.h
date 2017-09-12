@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 15:00:19 by jafaghpo          #+#    #+#             */
-/*   Updated: 2017/08/10 19:11:32 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/11 15:21:08 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@
 # define MAX(X, Y) (((X) > (Y)) ? (X) : (Y))
 
 # define BUFF_SIZE 4096
+
+# define EOC		"\033[0m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
+# define BLUE		"\033[34m"
+# define MAGENTA	"\033[35m"
+# define CYAN		"\033[36m"
+# define HIGH		"\033[1m"
+
+# define BG_RED		"\033[41m"
+# define BG_BLUE	"\033[44m"
+
+# define HRED		"\033[1m\033[31m"
+# define HGREEN		"\033[1m\033[32m"
+# define HYELLOW	"\033[1m\033[33m"
+# define HBLUE		"\033[1m\033[34m"
+# define HMAG		"\033[1m\033[35m"
+# define HCYAN		"\033[1m\033[36m"
 
 typedef unsigned char	t_byte;
 
@@ -65,7 +84,7 @@ void			ft_free_strsplit(char *s, char **buff, char split);
 void			ft_free_grid(void ***grid);
 
 /*
-** Putin
+** Putin Сука Блять
 */
 
 void			ft_putchar(char c);
@@ -77,6 +96,8 @@ void			ft_putnbr_fd(int nb, int fd);
 void			ft_putstr(char const *s);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_print_memory(const void *addr, size_t size);
+void			ft_color(char *color, char *str, char *end);
+void			ft_colorendl(char *color, char *str, char *end);
 
 /*
 ** Str

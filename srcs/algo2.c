@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 15:41:15 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/08 16:34:07 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/12 19:14:33 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ void			add_path_reset_weights(t_path *p, t_struct *s, int path)
 		p->already_path[p->paths[path][j]] = 1;
 	}
 	j = 0;
+	p->already_path[1] = 0;
 	while (j != s->nbrooms)
 	{
-		p->weights[j] = 0;
+		p->weights[j++] = 0;
 	}
 }
 
@@ -83,4 +84,5 @@ void			manage_path(int i, t_path *p, t_struct *s)
 	}
 	p->paths[i][j] = 1;
 	add_path_reset_weights(p, s, i);
+	pathsize(i, p);
 }

@@ -1,34 +1,15 @@
-10
+3
 ##start
 start 0 1
 ##end
 end 1 0
-0 0 0
-1 1 1
-2 2 2
-3 3 3
-4 4 4
-5 5 5
-6 6 6
-7 7 7
-8 8 8
-alone 0 0
-alone2 0 0
-alone3 3 3
-alone4 4 4
-alone5 5 5
-start-0
-0-1
-1-2
-2-3
-3-4
-4-5
-5-6
-6-7
-7-8
-8-end
-5-alone
-8-alone2
-alone2-alone3
-alone2-alone4
-alone4-alone5
+A 0 0
+E 1 1
+I 2 2
+O 3 3
+start-A
+start-E
+E-O
+A-I
+I-end
+O-end

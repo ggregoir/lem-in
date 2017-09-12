@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/08 16:01:41 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/12 22:54:55 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct	s_struct
 	int			nbfourmi;
 	int			print;
 	int			safe;
+	int			link;
+	int			path;
+	int			name;
+	int			debug;
 }				t_struct;
 
 typedef	struct	s_path
@@ -48,6 +52,13 @@ typedef	struct	s_path
 	int			pi;
 	int			x;
 }				t_path;
+
+typedef	struct	s_ants
+{
+	int			*pos;
+	int			*apath;
+	int			*apathi;
+}				t_ants;
 
 typedef struct	s_line
 {
@@ -75,5 +86,9 @@ void			delete_single(t_struct *s);
 void			get_weights(t_path *p, t_struct *s, int curr, int dist);
 void			manage_path(int i, t_path *p, t_struct *s);
 void			add_path_reset_weights(t_path *p, t_struct *s, int path);
+void			showpaths(t_path *p);
+void			showlinks(t_struct *s);
+void			shownames(t_struct *s);
+void			print_result(t_struct *s, t_path *p);
 
 #endif

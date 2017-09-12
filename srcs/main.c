@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/07 14:43:08 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/12 22:54:41 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@ void		init_struct(t_struct *s)
 	if ((s->rooms = ft_memalloc(sizeof(int*) * BSIZE)) == NULL)
 		return(error(3, s));
 	while (x != BSIZE)
-	{
 		if ((s->rooms[x++] = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 			return(error(3, s));
-		//ft_memset(s->rooms[x++], -1, BSIZE);
-	}
-
 	if ((s->names = ft_memalloc(sizeof(char*) * BSIZE)) == NULL)
 		return(error(3, s));
 	s->ni = 2;
@@ -36,33 +32,68 @@ void		init_struct(t_struct *s)
 	s->print = 1;
 	s->safe = 0;
 	s->nbrooms = 2;
+	s->name = 0;
+	s->path = 0;
+	s->link = 0;
+	s->debug = 0;
 
 }
 
+void		output(t_struct *s, t_path *p)
+{
+	if (s->print == 1)
+		print_buff(s);
+	resolve(s, p);
+	if (s->name || s->debug)
+		shownames(s);
+	if (s->link || s->debug)
+		showlinks(s);
+	if (s->path || s->debug)
+		showpaths(p);
+	print_result(s, p);
+}
 
+void		handle_tags(t_struct *s, int *fd, int argc, char **argv)
+{
+	int i;
+
+	i = 0;
+	if (ft_strequ(argv[1], "-f"))
+	{
+		*fd = open(argv[argc - 1], O_RDONLY);
+		i = 2;
+	}
+	while (i < argc)
+	{
+		if (ft_strequ(argv[i], "--mute"))
+			s->print = 0;
+		if (ft_strequ(argv[i], "--safe"))
+			s->safe = 1;
+		if (ft_strequ(argv[i], "--names"))
+			s->name = 1;
+		if (ft_strequ(argv[i], "--links"))
+			s->link = 1;
+		if (ft_strequ(argv[i], "--paths"))
+			s->path = 1;
+		if (ft_strequ(argv[i], "--debug"))
+			s->debug = 1;
+		i++;
+	}
+}
 
 int			main(int argc, char **argv)
 {
 	char		*line;
 	t_struct	s;
 	t_path 		p;
-	int i;
-	int j;
-	int 	fd;
+	int			i;
+	int 		fd;
 
 	i = 0;
-	j = 0;
-	fd = open(argv[argc - 1], O_RDONLY);
-	argc = 0;
-	ft_putendl("lol");
+	fd = 0;
 	init_struct(&s);
-	ft_putendl("mdr");
 	init_buff(&s);
-	ft_putendl("lal");
-	if (ft_strequ(argv[1], "-mute"))
-		s.print = 0;
-	if (ft_strequ(argv[1], "-safe"))
-		s.safe = 1;
+	handle_tags(&s, &fd, argc, argv);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line == 0)
@@ -75,36 +106,6 @@ int			main(int argc, char **argv)
 			parse_line(&s, line);
 		}
 	}
-	if (s.print == 1)
-		print_buff(&s);
-	resolve(&s, &p);
-	while (s.names[i])
-	{
-		printf("nb = %d nom = %s\n", i, s.names[i]);
-		i++;
-	}
-	i = 0;
-	while (i != BSIZE)
-	{
-		while(s.rooms[i][j])
-		{
-			printf("%s link avec %s\n", s.names[i], s.names[s.rooms[i][j]]);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	i = 0;
-	j = 0;
-	while (i != p.nbpath)
-	{
-		while (p.paths[i][j])
-		{
-			printf("path nb%d = %d\n",i + 1, p.paths[i][j]);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
+	output(&s, &p);
 	return 0;
 }
