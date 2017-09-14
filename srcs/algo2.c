@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 15:41:15 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/12 19:14:33 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 14:59:59 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 
 void		get_weights(t_path *p, t_struct *s, int curr, int dist)

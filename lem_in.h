@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/12 22:54:55 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:00:18 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/includes/libft.h"
 
-# define BSIZE	4096
+# define BSIZE	8192
 # define BUSIZE	1 << 15
 
 typedef struct	s_struct
@@ -36,6 +36,7 @@ typedef struct	s_struct
 	int			path;
 	int			name;
 	int			debug;
+	int 		color;
 }				t_struct;
 
 typedef	struct	s_path
@@ -58,6 +59,7 @@ typedef	struct	s_ants
 	int			*pos;
 	int			*apath;
 	int			*apathi;
+	int 		*end;
 }				t_ants;
 
 typedef struct	s_line
@@ -90,5 +92,6 @@ void			showpaths(t_path *p);
 void			showlinks(t_struct *s);
 void			shownames(t_struct *s);
 void			print_result(t_struct *s, t_path *p);
+void			print_turn_color(t_ants *a, t_struct *s);
 
 #endif

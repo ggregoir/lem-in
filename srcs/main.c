@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 19:12:35 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/12 22:54:41 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:04:33 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 void		init_struct(t_struct *s)
 {
@@ -36,13 +35,17 @@ void		init_struct(t_struct *s)
 	s->path = 0;
 	s->link = 0;
 	s->debug = 0;
+	s->color = 0;
 
 }
 
 void		output(t_struct *s, t_path *p)
 {
 	if (s->print == 1)
+	{
 		print_buff(s);
+		write(1, "\n", 1);
+	}
 	resolve(s, p);
 	if (s->name || s->debug)
 		shownames(s);
@@ -57,13 +60,13 @@ void		handle_tags(t_struct *s, int *fd, int argc, char **argv)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	if (ft_strequ(argv[1], "-f"))
 	{
 		*fd = open(argv[argc - 1], O_RDONLY);
-		i = 2;
+		i = 1;
 	}
-	while (i < argc)
+	while (++i < argc)
 	{
 		if (ft_strequ(argv[i], "--mute"))
 			s->print = 0;
@@ -77,7 +80,8 @@ void		handle_tags(t_struct *s, int *fd, int argc, char **argv)
 			s->path = 1;
 		if (ft_strequ(argv[i], "--debug"))
 			s->debug = 1;
-		i++;
+		if (ft_strequ(argv[i], "--color"))
+			s->color = 1;
 	}
 }
 

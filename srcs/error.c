@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:38:44 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/11 18:16:49 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 14:59:53 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 void		willudothis(t_struct *s, char *str)
 {

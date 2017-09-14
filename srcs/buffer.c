@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:56:16 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/17 00:00:39 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:01:49 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 void		print_buff(t_struct *s)
 {

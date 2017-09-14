@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/12 19:48:08 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 14:59:07 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include	<stdio.h>
 
 void		add_name(t_struct *s, char *str)
 {

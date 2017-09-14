@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/03 20:34:58 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/07 14:39:22 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:02:38 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 void				delete_link(t_struct *s, int room)
 {
@@ -73,7 +72,7 @@ void				delete_single(t_struct *s)
 			delete_link(s, i);
 			killmepls[i] = 1;
 			i = 1;
-			ft_putendl(s->names[i]);
+			//ft_putendl(s->names[i]);
 			//printf("s->rooms[i][0] = %d\n",s->rooms[i][0]);
 		}
 	}

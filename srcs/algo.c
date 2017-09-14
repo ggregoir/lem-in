@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/12 18:44:35 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:00:02 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 void			nb_path(t_struct *s, t_path *p)
 {

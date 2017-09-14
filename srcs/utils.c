@@ -6,12 +6,11 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 00:18:25 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/08/29 21:03:24 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/14 14:59:19 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
-#include <stdio.h>
 
 char		*ft_strjoin_and_free(char *s1, char *s2, char c, int at)
 {

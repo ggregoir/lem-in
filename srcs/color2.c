@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   color2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/11 18:25:04 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/11 18:25:42 by ggregoir         ###   ########.fr       */
+/*   Created: 2017/09/14 14:04:26 by ggregoir          #+#    #+#             */
+/*   Updated: 2017/09/14 14:05:16 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,54 +59,6 @@ void		showlinks(t_struct *s)
 			j++;
 		}
 		write(1, "\n", 1);
-		j = 0;
-		i++;
-	}
-}
-
-void		showpaths_while(int i, int j, t_path *p)
-{
-	while (p->paths[i][j + 1])
-		{
-			if (j == 0)
-			{
-				ft_color(RED,"[", HRED);
-				ft_putnbr(p->paths[i][j]);
-				ft_color(EOC, NULL, NULL);
-				ft_color(RED,"] ", EOC);
-			}
-			else 
-			{
-				ft_color(BLUE,"[", HBLUE);
-				ft_putnbr(p->paths[i][j]);
-				ft_color(EOC, NULL, NULL);
-				ft_color(BLUE,"] ", EOC);
-			}
-			ft_color(YELLOW, "-> ", EOC);
-			j++;
-		}
-}
-
-void		showpaths(t_path *p)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	ft_colorendl(HCYAN,"\n		[START SHOW PATHS]\n", EOC);
-	while (i != p->nbpath)
-	{
-		ft_color(MAGENTA, "path ", EOC);
-		ft_color(YELLOW,"[", HYELLOW);
-		ft_putnbr(i);
-		ft_color(EOC, NULL, NULL);
-		ft_color(YELLOW,"] = ", EOC);
-		showpaths_while(i, j, p);
-		ft_color(GREEN,"[", HGREEN);
-		ft_putnbr(p->paths[i][j]);
-		ft_color(EOC, NULL, NULL);
-		ft_color(GREEN,"]\n", EOC);
 		j = 0;
 		i++;
 	}
