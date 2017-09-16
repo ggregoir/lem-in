@@ -6,11 +6,29 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 00:18:25 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/14 14:59:19 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 18:28:53 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+
+void		add_name(t_struct *s, char *str)
+{
+	if (s->start == 1)
+	{
+		s->names[0] = str;
+		s->start = 0;
+		return ;
+	}
+	if (s->end == 1)
+	{
+		s->names[1] = str;
+		s->end = 0;
+		return ;
+	}
+	s->names[s->ni++] = str;
+	s->nbrooms++;
+}
 
 char		*ft_strjoin_and_free(char *s1, char *s2, char c, int at)
 {
@@ -41,44 +59,49 @@ char		*ft_strjoin_and_free(char *s1, char *s2, char c, int at)
 
 int			link_first(t_struct *s, char *line)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	*atfree;
 
 	i = 0;
 	while (line[i] != '-')
 		i++;
 	j = 0;
-	//ft_putendl("before while");
 	while (s->names[j])
 	{
-		//printf("||%s||%s||\n",ft_strcut(line, 0, i), s->names[j]);
-		if (ft_strequ(s->names[j] ,ft_strcut(line, 0, i )))
-			return(j);
+		if (ft_strequ(s->names[j], (atfree = ft_strcut(line, 0, i))))
+		{
+			free(atfree);
+			return (j);
+		}
+		free(atfree);
 		j++;
 	}
-	//ft_putendl("after while");
-	return(-1);
+	return (-1);
 }
 
 int			link_second(t_struct *s, char *line)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	*atfree;
 
 	i = 0;
 	while (line[i] != '-')
 		i++;
 	j = 0;
-	//ft_putendl("before while");
 	while (s->names[j])
 	{
-		//printf("%s||%s||\n",ft_strcut(line, i + 1, ft_strlen(line)), s->names[j]);
-		if (ft_strequ(s->names[j] ,ft_strcut(line, i + 1, ft_strlen(line))))
-			return(j);
+		if (ft_strequ(s->names[j],
+			(atfree = ft_strcut(line, i + 1, ft_strlen(line)))))
+		{
+			free(atfree);
+			return (j);
+		}
+		free(atfree);
 		j++;
 	}
-	//ft_putendl("after while");
-	return(-1);
+	return (-1);
 }
 
 size_t		ft_strlenchr(const char *s, char c)

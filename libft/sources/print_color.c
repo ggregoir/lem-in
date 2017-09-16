@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:47:05 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/11 14:47:26 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 16:30:29 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		ft_color(char *color, char *str, char *end)
 	ft_putstr(str);
 	if (end != NULL)
 		ft_putstr(end);
-}	
+}
 
 void		ft_colorendl(char *color, char *str, char *end)
 {

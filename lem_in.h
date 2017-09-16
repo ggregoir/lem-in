@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:43:24 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/14 15:00:18 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 18:29:01 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "libft/includes/libft.h"
 
-# define BSIZE	8192
+# define BSIZE	4096
 # define BUSIZE	1 << 15
 
 typedef struct	s_struct
-{	
+{
 	char		**names;
 	int			ni;
 	int			ri;
@@ -36,7 +36,7 @@ typedef struct	s_struct
 	int			path;
 	int			name;
 	int			debug;
-	int 		color;
+	int			color;
 }				t_struct;
 
 typedef	struct	s_path
@@ -52,6 +52,7 @@ typedef	struct	s_path
 	int			i;
 	int			pi;
 	int			x;
+	int			sel;
 }				t_path;
 
 typedef	struct	s_ants
@@ -59,7 +60,7 @@ typedef	struct	s_ants
 	int			*pos;
 	int			*apath;
 	int			*apathi;
-	int 		*end;
+	int			*end;
 }				t_ants;
 
 typedef struct	s_line
@@ -88,10 +89,14 @@ void			delete_single(t_struct *s);
 void			get_weights(t_path *p, t_struct *s, int curr, int dist);
 void			manage_path(int i, t_path *p, t_struct *s);
 void			add_path_reset_weights(t_path *p, t_struct *s, int path);
-void			showpaths(t_path *p);
+void			showpaths(t_path *p, t_struct *s);
 void			showlinks(t_struct *s);
 void			shownames(t_struct *s);
 void			print_result(t_struct *s, t_path *p);
 void			print_turn_color(t_ants *a, t_struct *s);
+int				startendlink(t_struct *s, t_path *p);
+void			print_start_end(t_struct *s);
+void			free_struct(t_struct *s, t_path *p);
+void			add_name(t_struct *s, char *str);
 
 #endif

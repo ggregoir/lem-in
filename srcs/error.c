@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:38:44 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/14 14:59:53 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 17:13:57 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		willudothis(t_struct *s, char *str)
 {
-	int i;
-	char *line;
+	int		i;
+	char	*line;
 
 	i = 0;
 	ft_putstr(str);
@@ -24,12 +24,12 @@ void		willudothis(t_struct *s, char *str)
 	{
 		if (ft_gnl(0, &line) > 0)
 		{
-			if (ft_strequ(line ,"no"))
+			if (ft_strequ(line, "no"))
 				error(6, s);
-			if (ft_strequ(line ,"yes"))
+			if (ft_strequ(line, "yes"))
 				i = 1;
 		}
-		if(i == 0)
+		if (i == 0)
 			ft_putendl_fd("\"yes\" or \"no\"", 1);
 	}
 }
@@ -44,9 +44,17 @@ void		check_room(t_struct *s, char *line)
 			error(3, s);
 }
 
+void		error3(int i)
+{
+	if (i == 9)
+	{
+		ft_putendl_fd("no path error", 1);
+		exit(1);
+	}
+}
+
 void		error2(int i, t_struct *s)
 {
-	//printf("i e2 = %d\n", i);
 	if (i == 5)
 	{
 		ft_putendl_fd("ants error", 1);
@@ -71,11 +79,11 @@ void		error2(int i, t_struct *s)
 		else
 			error(4, s);
 	}
+	error3(i);
 }
 
 void		error(int i, t_struct *s)
 {
-	//printf("i = %d\n", i);
 	if (i == 0)
 	{
 		ft_putendl_fd("input error", 1);

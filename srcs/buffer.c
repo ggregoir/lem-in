@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 17:56:16 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/14 15:01:49 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 16:36:44 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 void		print_buff(t_struct *s)
 {
 	write(1, s->b, s->bi);
+	write(1, "\n", 1);
 }
 
 void		init_buff(t_struct *s)
 {
-	//printf("laul\n");
 	ft_bzero(s->b, BUSIZE);
-//	printf("lel\n");
 }
 
 void		str_buff(t_struct *s, char *str)

@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 18:13:10 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/14 15:00:02 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/16 17:20:20 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,23 @@ void			init_path(t_path *p, t_struct *s)
 
 	x = 0;
 	if ((p->paths = ft_memalloc(sizeof(int*) * p->nbpath)) == NULL)
-		return(error(3, s));
+		return (error(3, s));
 	while (x + 1 <= p->nbpath)
 	{
 		if ((p->paths[x++] = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
-			return(error(3, s));
+			return (error(3, s));
 	}
 	if ((p->tmp = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
-		return(error(3, s));
+		return (error(3, s));
 	if ((p->already_path = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
-		return(error(3, s));
+		return (error(3, s));
 	if ((p->pathsize = ft_memalloc(sizeof(int) * p->nbpath)) == NULL)
-		return(error(3, s));
+		return (error(3, s));
 	p->i = 0;
 	p->pi = 0;
 	p->x = 0;
 	p->over = 0;
+	p->sel = 0;
 }
 
 void			get_path(t_struct *s, t_path *p, int path)
@@ -74,12 +75,41 @@ void			get_path(t_struct *s, t_path *p, int path)
 		i = -1;
 		best = 1;
 		while (s->rooms[curr][++i] != 0)
-			if (p->weights[s->rooms[curr][i]] < p->weights[best] && p->weights[s->rooms[curr][i]] != 0)
+			if (p->weights[s->rooms[curr][i]] < p->weights[best] &&
+			p->weights[s->rooms[curr][i]] != 0)
 				best = s->rooms[curr][i];
 		p->tmp[++j] = best;
 		curr = best;
 	}
 	manage_path(path, p, s);
+}
+
+void			print_start_end(t_struct *s)
+{
+	int	i;
+
+	i = 1;
+	while (i <= s->nbfourmi)
+	{
+		if (s->color)
+		{
+			ft_color(HMAG, NULL, NULL);
+			write(1, "L", 1);
+			ft_putnbr(i++);
+			write(1, "-", 1);
+			ft_putstr(s->names[1]);
+			write(1, " ", 1);
+		}
+		else
+		{
+			write(1, "L", 1);
+			ft_putnbr(i++);
+			write(1, "-", 1);
+			ft_putstr(s->names[1]);
+			write(1, " ", 1);
+		}
+	}
+	ft_color(NULL, "\n", EOC);
 }
 
 void			resolve(t_struct *s, t_path *p)
@@ -90,9 +120,11 @@ void			resolve(t_struct *s, t_path *p)
 	i = -1;
 	j = 0;
 	if ((p->weights = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
-		return(error(3, s));
+		return (error(3, s));
 	delete_single(s);
 	nb_path(s, p);
+	if (p->nbpath == 0)
+		error(9, s);
 	init_path(p, s);
 	while (++i != p->nbpath)
 	{
@@ -101,7 +133,7 @@ void			resolve(t_struct *s, t_path *p)
 			while (j != s->nbrooms)
 				j++;
 		if (p->over == 1)
-		{	
+		{
 			p->over = 0;
 			get_path(s, p, i);
 		}
