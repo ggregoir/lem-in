@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 19:02:04 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/16 17:53:56 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/30 13:20:10 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			init_astruct(t_ants *a, t_struct *s, t_path *p)
 		return (error(3, s));
 	if ((a->apath = ft_memalloc(sizeof(int) * (s->nbfourmi + 1))) == NULL)
 		return (error(3, s));
-	if ((a->apathi = ft_memalloc(sizeof(int) * s->nbrooms)) == NULL)
+	if ((a->apathi = ft_memalloc(sizeof(int) * BSIZE)) == NULL)
 		return (error(3, s));
 	if ((a->end = ft_memalloc(sizeof(int) * (s->nbfourmi + 1))) == NULL)
 		return (error(3, s));

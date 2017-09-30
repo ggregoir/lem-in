@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 00:18:25 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/16 18:28:53 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/30 13:17:53 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		add_name(t_struct *s, char *str)
 	}
 	s->names[s->ni++] = str;
 	s->nbrooms++;
+	if (s->nbrooms == BSIZE - 1)
+		error(3, s);
 }
 
 char		*ft_strjoin_and_free(char *s1, char *s2, char c, int at)

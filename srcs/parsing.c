@@ -6,7 +6,7 @@
 /*   By: ggregoir <ggregoir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 18:55:45 by ggregoir          #+#    #+#             */
-/*   Updated: 2017/09/16 19:01:03 by ggregoir         ###   ########.fr       */
+/*   Updated: 2017/09/30 13:03:28 by ggregoir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void		parse_line(t_struct *s, char *line)
 			return ;
 		}
 	}
+	s->nbfourmi > BSIZE - 1 ? error(5, s) : 1;
 	if (line[0] == '\0')
 		return (error(7, s));
 	else if (line[0] == '#' && line[1] == '#')
